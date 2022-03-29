@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cours{% endblock %}
+
+{% block body %}
+    <h1>Cours</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ cour.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ cour.Titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ cour.Description }}</td>
+            </tr>
+            <tr>
+                <th>DatedeCreation</th>
+                <td>{{ cour.DatedeCreation ? cour.DatedeCreation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Langue</th>
+                <td>{{ cour.Langue }}</td>
+            </tr>
+        </tbody>
+        </table>
+
+            <h1>Chapitres</h1>
+
+                          {% for chap in cour.IdChapitres %}
+        <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chap.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ chap.Titre }}</td>
+            </tr>
+        </tbody>
+                                        {% else %}
+    Ajouter Chapitres
+
+              {% endfor %}
+
+
+    <a href="{{ path('app_cours_index') }}">back to list</a>
+
+    <a href="{{ path('app_cours_edit', {'id': cour.id}) }}">edit</a>
+
+    {{ include('cours/_delete_form.html.twig') }}
+{% endblock %}
